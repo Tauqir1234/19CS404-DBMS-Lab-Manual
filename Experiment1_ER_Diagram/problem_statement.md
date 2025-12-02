@@ -22,33 +22,37 @@ FlexiFit Gym wants a database to manage its members, trainers, and fitness progr
 - Payments tracked for memberships and sessions.
 
 ### ER Diagram:
-*Paste or attach your diagram here*  
-![ER Diagram](er_diagram_fitness.png)
+<img width="1265" height="514" alt="image" src="https://github.com/user-attachments/assets/06687fde-0bc5-4b7d-a605-c7b358a15e03" />
+
 
 ### Entities and Attributes
 
 | Entity | Attributes (PK, FK) | Notes |
 |--------|--------------------|-------|
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
+Member    |     Member_ID (PK), Name, Membership_Type, Start_Date               |    Tracks all gym members   |
+|       Program |    Program_ID (PK), Program_Name, Type                |     Yoga, Zumba, Weight Training  |
+|   Trainer     |      Trainer_ID (PK), Name, Specialization              |   A trainer may take multiple programs    |
+|      Session  |        Session_ID (PK), Member_ID (FK), Trainer_ID (FK), Date, Time            |  For personal training sessions     |
+|     Attendance   |           Attendance_ID (PK), Session_ID (FK), Status (Present/Absent)	         |  Records session attendance     |
 
 ### Relationships and Constraints
 
 | Relationship | Cardinality | Participation | Notes |
 |--------------|------------|---------------|-------|
-|              |            |               |       |
-|              |            |               |       |
-|              |            |               |       |
+|     Member–Program (Joins)	         |      M:N      |     Partial          |     A member can join many programs  |
+|         Program–Trainer (Assigned)     |      	M:N      |      Total         |   Programs can have multiple trainers    |
+|           Session–Attendance   |        1:M    |      Partial         |   Each session must have attendance record    |
 
-### Assumptions
-- 
-- 
-- 
+### Assumptions 
+ - Membership type determines allowed programs but not restricted in ER model.
+- Personal training sessions are optional.
+- Payments cover both membership fees and session fees.
+  
 
 ---
+
+
+
 
 # Scenario B: City Library Event & Book Lending System
 
